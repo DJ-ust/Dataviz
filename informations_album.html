@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Informations sur l'album</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <main id="page_album">
+        <!-- <div id="cover-container"></div> -->
+
+
+
+
+        <div id="column1">
+            <div id="bloc_cover">
+
+                <h2 id="albumTitle"></h2>
+                <div id="cadre_cover">
+                    <div id="albumTitle"></div>
+
+                    <img id="albumCover" alt="Album Cover">
+                </div>
+                <h2>
+                    <div id="artistName"></div>
+                </h2>
+
+            </div>
+
+            <div id="bloc_label">
+                <h3>Label</h3>
+                <img id="albumLabel" alt="">
+            </div>
+
+        </div>
+        <svg class="mid" xmlns="http://www.w3.org/2000/svg" width="13" height="380" viewBox="0 0 13 380" fill="none">
+            <path
+                d="M6.5 379.774L12.2735 374L6.5 368.226L0.726497 374L6.5 379.774ZM7.5 374L7.5 -0.00135468H5.5L5.5 374H7.5Z"
+                fill="#F0E5CF" />
+        </svg>
+
+        <div id="column2">
+            <div id="bloc_infos">
+
+                <h3 id="titre_infos">Infos générales</h3>
+
+                <div id="bas_infos">
+                    <p>Sorti le <span id="albumDate"></span></p>
+                    <hr />
+                    <p><span id="nbTitres"></span> titres</p>
+                    <hr>
+                    <p id="albumDuree"></p>
+                </div>
+
+            </div>
+
+            <svg class="right" xmlns="http://www.w3.org/2000/svg" width="579" height="12" viewBox="0 0 579 12"
+                fill="none">
+                <path
+                    d="M0.224544 6.00781L5.99805 11.7813L11.7715 6.00781L5.99805 0.23431L0.224544 6.00781ZM5.99805 7.00781H579.002V5.00781H5.99805V7.00781Z"
+                    fill="#F0E5CF" />
+            </svg>
+
+            <div id="bloc_ventes">
+
+                <h3 id="titre_infos">Ventes</h3>
+
+                <div id="bas_infos">
+                    <p><span id="albumCertif"></span></p>
+                    <hr />
+                    <p><span id="albumVentes"></span> ventes</p>
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- <div id="albumExtrait">
+           
+        </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </main>
+
+
+
+
+
+
+    <script>
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+
+                function getParameterByName(name, url) {
+                    if (!url) url = window.location.href;
+                    name = name.replace(/[\[\]]/g, "\\$&");
+                    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                        results = regex.exec(url);
+                    if (!results) return null;
+                    if (!results[2]) return '';
+                    return decodeURIComponent(results[2].replace(/\+/g, " "));
+                }
+
+                // Récupère la valeur du paramètre "album" de l'URL
+                var albumParam = getParameterByName('album');
+                var albumData = data.find(album => album["Nom d'album"] === albumParam);
+
+                // Vérifie si l'album a été trouvé
+                if (albumData) {
+                    // Utilise les données pour afficher les informations sur la page
+                    // (par exemple, met à jour les éléments HTML avec les détails de l'album)
+                } else {
+                    // Gère le cas où l'album n'a pas été trouvé
+                    console.error("Album not found");
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                document.getElementById('albumTitle').textContent = albumData["Nom d'album"];
+                document.getElementById('artistName').textContent = albumData["Artiste"];
+
+
+
+                var albumCoverElement = document.getElementById('albumCover');
+
+
+                albumCoverElement.src = albumData["Image album"];
+                // Alt pour fournir un texte descriptif alternatif à l'image (utile pour l'accessibilité)
+                albumCoverElement.alt = "Cover of " + albumData["Nom d'album"];
+
+
+
+
+                document.getElementById('albumDate').textContent = albumData["Date de parution"];
+                document.getElementById('nbTitres').textContent = albumData["Nombres de titres"];
+                document.getElementById('albumDuree').textContent = albumData["Duree de l'album"];
+
+                document.getElementById('albumCertif').textContent = albumData["Certification (duree d'obtention)"];
+                document.getElementById('albumVentes').textContent = albumData["Nombres de ventes en 1ere semaine"];
+                
+
+                var albumLabel = document.getElementById('albumLabel');
+                albumLabel.src = albumData["logo_label_mdd1"];
+
+                // document.getElementById('albumExtrait').textContent = albumData["extrait"];
+
+
+            })
+            .catch(error => {
+                // Gère les erreurs si la récupération des données échoue
+                console.error('Error fetching data:', error);
+            });
+
+
+
+
+    </script>
+</body>
+
+</html>

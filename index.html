@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+
+
+    <title>Vizalbum</title>
+</head>
+
+<body>
+    <section id="ecran_titre">
+        <h1>VIZALBUM</h1>
+        
+    </section>
+
+    <main id="section-classement">
+
+
+
+     
+
+        <div id="selecteur">
+            <label for="anneeSelect"></label>
+            <select id="anneeSelect" onchange="filtrerParAnnee()">
+                
+
+            </select>
+
+        </div>
+
+
+
+
+       
+
+        <div id="classement">
+
+            <div id="casque_rond">
+                <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" id="cercle">
+                    <circle cx="50" cy="50" r="35" />
+                </svg>
+                
+                <img src="images/casque.svg" alt="" id="casque">
+            </div>
+
+
+
+
+
+
+
+
+
+            
+
+            <div id="data-cover"></div>
+
+            <svg id="graph"></svg>
+            
+        </div>
+
+
+    </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="script.js"></script>
+
+    <footer>
+        <a href="apropos.html">A propos</a>
+        <a href="mentions-legales.html">Mentions légales</a>
+        
+    </footer>
+
+</body>
+
+</html>
