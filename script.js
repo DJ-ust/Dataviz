@@ -82,7 +82,7 @@ const angleFin = -165;
 
 // Créer l'élément SVG
 const svg = d3.select('#graph')
-  .attr("width", 3 * rayonSoleil)
+  .attr("width", 2 * rayonSoleil)
   .attr("height", 2 * rayonSoleil);
 
 // Calculer les angles pour répartir les rayons
